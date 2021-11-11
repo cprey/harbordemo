@@ -1,15 +1,20 @@
-# 🚢 ⛵ Harbor Demo on Minkube
+# 🚢 ⛵ Harbor Demo on Minikube
 
 _Why Harbor?_
 
-* it acts as a proxy cache (fewer errors from DockerHub)
+* container proxy cache (fewer errors from DockerHub)
 * store container images
 * scan container images
+* sign container images
 * store helm charts
 * distribute containers and charts
 * RBAC, quotas, push rules, intuitive UI, full API
 
-Use these instructions if you want to run Harbor from a Helm chart on OSX using minikube. The minikube this was tested on uses hyperkit as the VM `minikube start --driver=hyperkit`
+Use these instructions if you want to run Harbor from a Helm chart on OSX using minikube.
+
+## Dependencies
+
+The minikube this was tested on uses hyperkit as the VM `minikube start --driver=hyperkit`
 
 minkube addons:
 
