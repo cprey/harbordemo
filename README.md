@@ -9,8 +9,9 @@ _Why Harbor?_
 * store helm charts
 * distribute containers and charts
 * RBAC, quotas, push rules, intuitive UI, full API
+* *potentially not allow connections to Internet for containers and charts*
 
-Use these instructions if you want to run Harbor from a Helm chart on OSX using minikube.
+Use these instructions if you want to demo Harbor from a Helm chart on OSX using minikube.
 
 ## Dependencies
 
@@ -24,7 +25,7 @@ minkube addons:
 
 1. add the helm chart
     `helm repo add harbor https://helm.goharbor.io`
-1. a values.yaml file was pulled from the [Harbor Git repo](https://github.com/goharbor/harbor) which can be used as a good base.
+1. a values.yaml file was pulled from the [Harbor Git repo](https://github.com/goharbor/harbor) which can be used as a good base. There were a few edits to the _values.yaml_ mainly disabling notary.
 1. install the chart
     `helm install harbor harbor/harbor -f values.yaml`
 1. watch the action...
@@ -53,3 +54,11 @@ minkube addons:
 1. view the image in _harbor_. Select the _Respositories_ tab and you should see an entry for image you just uploaded *library/footest*. Click on that link.
 1. This will take you into the Artifacts for that tag where you will see a *SHA256 link* of the image you just uploaded. Click on that.
 1. there is _Vulnerabilities_ and a _Build History_ tab. Explore them. Depending on what you pushed, you could see a bunch of issues or, perhaps it's clean.
+
+## 🥥 Proxy/Cache through Harbor for DockerHub
+
+1. log in to Harbor repository
+    `docker login core.harbor.domain/foo`
+1. pull the image as usual
+    `docker pull core.harbor.domain/dockerhub_cache_proxy/library/alpine:2.6`
+Subsequent image pulls will come from cache
